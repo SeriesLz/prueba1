@@ -184,41 +184,40 @@ repartoSection.classList.remove('hidden');
 
 // Botón Favoritos (con toggle)
 const favBtn = document.getElementById('fav-btn');
-const favKey = 'fav-' + 'Bernardo y Bianca'.replace(/s+/g, '_') + '-video-page';
+const favKey = 'fav-' + 'Bernardo y Bianca'.replace(/\s+/g, '_') + '-video-page';
 const favData = {
-id: favKey,
-title: 'Bernardo y Bianca',
-year: 1977,
-poster: 'https://image.tmdb.org/t/p/w500//4Vi5VEkVWdqJgbG3pGdREFOwZdJ.jpg',
-rating: 6.8,
+  id: favKey,
+  title: 'Bernardo y Bianca',
+  year: 1977,
+  poster: 'https://image.tmdb.org/t/p/w500//4Vi5VEkVWdqJgbG3pGdREFOwZdJ.jpg',
+  rating: 6.8,
 };
 
 function updateFavButton() {
-const isFav = localStorage.getItem(favKey) !== null;
-if (isFav) {
-favBtn.innerText = 'Quitar de Favoritos';
-favBtn.classList.remove('bg-yellow-500', 'text-black');
-favBtn.classList.add('bg-red-600', 'text-white');
-} else {
-favBtn.innerText = 'Agregar a Favoritos';
-favBtn.classList.remove('bg-red-600', 'text-white');
-favBtn.classList.add('bg-yellow-500', 'text-black');
-}
+  const isFav = localStorage.getItem(favKey) !== null;
+  if (isFav) {
+    favBtn.innerText = 'Quitar de Favoritos';
+    favBtn.classList.remove('bg-yellow-500', 'text-black');
+    favBtn.classList.add('bg-red-600', 'text-white');
+  } else {
+    favBtn.innerText = 'Agregar a Favoritos';
+    favBtn.classList.remove('bg-red-600', 'text-white');
+    favBtn.classList.add('bg-yellow-500', 'text-black');
+  }
 }
 
-// Cargar estado inicial
 updateFavButton();
 
-// Evento para alternar favorito
 favBtn.addEventListener('click', () => {
-const isFav = localStorage.getItem(favKey) !== null;
-if (isFav) {
-localStorage.removeItem(favKey);
-} else {
-localStorage.setItem(favKey, JSON.stringify(favData));
-}
-updateFavButton();
+  const isFav = localStorage.getItem(favKey) !== null;
+  if (isFav) {
+    localStorage.removeItem(favKey);
+  } else {
+    localStorage.setItem(favKey, JSON.stringify(favData));
+  }
+  updateFavButton();
 });
+
 </script>
 
 <!-- Script separado para guardar la película en categorías -->
